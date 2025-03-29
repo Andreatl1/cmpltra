@@ -1,0 +1,82 @@
+# File generati da build system (CMake, Make, Ninja)
+*/build/
+*/cmake-build-debug/
+*/cmake-build-release/
+*/CMakeCache.txt
+*/CMakeFiles/
+*/Makefile
+*/cmake_install.cmake
+*.ninja
+*.optimized.*
+
+# File oggetto e binari
+*.o
+*.a
+*.so
+*.dylib
+*.dll
+*.exe
+*.out
+*.slo
+*.lo
+*.la
+*.ilk
+*.pdb
+*.dSYM/
+
+
+# File di IDE/Editor
+.vscode/
+.idea/
+*.suo
+*.user
+*.sln
+*.filters
+*.vcxproj*
+*.swp
+*~
+*.swo
+\#*#
+.#*
+*.orig
+
+# Logs e diagnostica
+*.log
+*.tlog
+*.pidb
+*.iobj
+*.ipdb
+*.dmp
+
+# Dependencies (es. Conan, vcpkg)
+/deps/
+/third_party/
+/.conan/
+/vcpkg_installed/
+
+# Test e benchmark
+*.out
+*.test
+*.err
+test-results/
+*.junit
+
+# Python (se usi script)
+__pycache__/
+*.py[cod]
+.python-version
+.venv/
+venv/
+
+# File temporanei e OS
+.DS_Store
+Thumbs.db
+*.swp
+*~
+*.lock
+*.tmp
+*.bak
+
+# File di ambiente
+.env
+.env.local

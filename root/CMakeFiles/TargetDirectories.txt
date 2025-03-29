@@ -1,9 +1,0 @@
-/home/andrea/Documenti/uni/compilatori/parte2/Laboratorio_2/root/CMakeFiles/intrinsics_gen.dir
-/home/andrea/Documenti/uni/compilatori/parte2/Laboratorio_2/root/CMakeFiles/omp_gen.dir
-/home/andrea/Documenti/uni/compilatori/parte2/Laboratorio_2/root/CMakeFiles/acc_gen.dir
-/home/andrea/Documenti/uni/compilatori/parte2/Laboratorio_2/root/CMakeFiles/ARMTargetParserTableGen.dir
-/home/andrea/Documenti/uni/compilatori/parte2/Laboratorio_2/root/CMakeFiles/AArch64TargetParserTableGen.dir
-/home/andrea/Documenti/uni/compilatori/parte2/Laboratorio_2/root/CMakeFiles/RISCVTargetParserTableGen.dir
-/home/andrea/Documenti/uni/compilatori/parte2/Laboratorio_2/root/CMakeFiles/LocalOpts.dir
-/home/andrea/Documenti/uni/compilatori/parte2/Laboratorio_2/root/CMakeFiles/edit_cache.dir
-/home/andrea/Documenti/uni/compilatori/parte2/Laboratorio_2/root/CMakeFiles/rebuild_cache.dir

@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.20)
-project(local-opts)
+project(Assignment1)
 
 #===============================================================================
 # 1. LOAD LLVM CONFIGURATION
@@ -33,9 +33,10 @@ endif()
 #===============================================================================
 # 3. ADD THE TARGET
 #===============================================================================
-add_library(LocalOpts SHARED LocalOpts.cpp)
+file(GLOB SOURCES "./src/*.cpp")
+add_library(Assignment1 SHARED ${SOURCES})
 
 # Allow undefined symbols in shared objects on Darwin (this is the default
 # behaviour on Linux)
-target_link_libraries(LocalOpts
+target_link_libraries(Assignment1
   "$<$<PLATFORM_ID:Darwin>:-undefined dynamic_lookup>")
