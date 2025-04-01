@@ -8,6 +8,8 @@
 */cmake_install.cmake
 *.ninja
 *.optimized.*
+*.bc
+*/script.sh
 
 # File oggetto e binari
 *.o
