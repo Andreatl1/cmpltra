@@ -1,13 +1,14 @@
 export ROOT_LABS=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd ) #serve per ottenere il path assoluto di dove si trova lo script
 export LLVM_DIR=$(llvm-config --libdir)
 
+mkdir -p build
 BUILD_DIR=${ROOT_LABS}"/build"
 TEST_DIR=${ROOT_LABS}"/test"
 SRC_DIR=${ROOT_LABS}"/src"
 
 ASSIGNMENT=Assignment1 #nome del file .so che contiene i passi
-TEST_FILE=Foo
-TEST_FILE_EXTENSION=c
+TEST_FILE=AITests
+TEST_FILE_EXTENSION=ll
 TEST_FILE_PATH="${TEST_DIR}/${TEST_FILE}" 
 C_EXEC=false # this need to be changed to true if you want to run the C code 
 
