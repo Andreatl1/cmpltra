@@ -32,10 +32,10 @@ bool MultiInstructionOptimization::runOnBasicBlock(BasicBlock &BB) {
         // Otteniamo l'operazione inversa per l'ottimizzazione (es. Add -> Sub)
         Instruction::BinaryOps inverseOp;
         switch (InstBo->getOpcode()) {
-            case Instruction::Add: inverseOp = Instruction::Sub; break;  // a + b → l'inverso è -
-            case Instruction::Sub: inverseOp = Instruction::Add; break;  // a - b → l'inverso è +
-            case Instruction::Mul: inverseOp = Instruction::SDiv; break; // a * b → l'inverso è /
-            case Instruction::SDiv: inverseOp = Instruction::Mul; break; // a / b → l'inverso è *
+            case Instruction::Add: inverseOp = Instruction::Sub; break;  // a + b -> l'inverso è -
+            case Instruction::Sub: inverseOp = Instruction::Add; break;  // a - b -> l'inverso è +
+            case Instruction::Mul: inverseOp = Instruction::SDiv; break; // a * b -> l'inverso è /
+            case Instruction::SDiv: inverseOp = Instruction::Mul; break; // a / b -> l'inverso è *
             default: continue; 
         }
 
