@@ -1,16 +1,21 @@
 export ROOT_LABS=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd ) #serve per ottenere il path assoluto di dove si trova lo script
 export LLVM_DIR=$(llvm-config --libdir)
 
+
 mkdir -p build 
+
 BUILD_DIR=${ROOT_LABS}"/build"
 TEST_DIR=${ROOT_LABS}"/test"
 SRC_DIR=${ROOT_LABS}"/src"
 
 ASSIGNMENT=Assignment1 #nome del file .so che contiene i passi
+
+
+
 TEST_FILE=strength_reduction
 TEST_FILE_EXTENSION=c
 TEST_FILE_PATH="${TEST_DIR}/${TEST_FILE}" 
-C_EXEC=false # this need to be changed to true if you want to run the C code 
+C_EXEC=true # this need to be changed to true if you want to run the C code 
 
 echo "ROOT_LABS: ${ROOT_LABS}";
 echo "LLVM_DIR: ${LLVM_DIR}";
@@ -48,6 +53,11 @@ execute_passes() {
 echo "Running opt to apply pass..."; echo
 
 #execute_passes "algebraic-identity"
+
+#execute_passes "strength-reduction"
+
+
 execute_passes "strength-reduction"
 #execute_passes "multi-instruction-optimization"
+
 #execute_passes "algebraic-identity,multi-instruction-optimization,strength-reduction"
