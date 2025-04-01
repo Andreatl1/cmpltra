@@ -10,10 +10,9 @@ SRC_DIR=${ROOT_LABS}"/src"
 
 ASSIGNMENT=Assignment1 #nome del file .so che contiene i passi
 
-
-
 TEST_FILE=strength_reduction
 TEST_FILE_EXTENSION=c
+
 TEST_FILE_PATH="${TEST_DIR}/${TEST_FILE}" 
 C_EXEC=true # this need to be changed to true if you want to run the C code 
 
