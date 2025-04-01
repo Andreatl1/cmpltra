@@ -23,6 +23,7 @@ namespace assignment1
         bool runOnBasicBlock(BasicBlock &);
         bool runOnFunction(Function &);
         PreservedAnalyses run(Function &, FunctionAnalysisManager &);
+        
     };
 
     class MultiInstructionOptimization : public PassInfoMixin<MultiInstructionOptimization>
