@@ -20,6 +20,11 @@ llvm::PassPluginLibraryInfo getAssignmentPassPluginInfo()
                     FPM.addPass(assignment3::LoopPass());
                     return true;
                   }
+
+                  if (Name == "custom-LICM-pass") {
+                    FPM.addPass(assignment3::CustomLICMPass());
+                    return true;
+                  }
                   return false;
                 });
           }};
