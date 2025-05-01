@@ -6,35 +6,37 @@ target triple = "x86_64-pc-linux-gnu"
 @g = dso_local global i32 0, align 4
 
 ; Function Attrs: noinline nounwind sspstrong uwtable
-define dso_local i32 @g_incr(i32 noundef %0) #0 {
-  %2 = load i32, ptr @g, align 4
-  %3 = add nsw i32 %2, %0
-  store i32 %3, ptr @g, align 4
-  %4 = load i32, ptr @g, align 4
-  ret i32 %4
+define dso_local i32 @g_incr(i32 noundef %c) #0 {
+entry:
+  %0 = load i32, ptr @g, align 4
+  %add = add nsw i32 %0, %c
+  store i32 %add, ptr @g, align 4
+  %1 = load i32, ptr @g, align 4
+  ret i32 %1
 }
 
 ; Function Attrs: noinline nounwind sspstrong uwtable
-define dso_local i32 @loop(i32 noundef %0, i32 noundef %1, i32 noundef %2) #0 {
-  br label %4
+define dso_local i32 @loop(i32 noundef %a, i32 noundef %b, i32 noundef %c) #0 {
+entry:
+  br label %for.cond
 
-4:                                                ; preds = %8, %3
-  %.0 = phi i32 [ %0, %3 ], [ %9, %8 ]
-  %5 = icmp slt i32 %.0, %1
-  br i1 %5, label %6, label %10
+for.cond:                                         ; preds = %for.inc, %entry
+  %i.0 = phi i32 [ %a, %entry ], [ %inc, %for.inc ]
+  %cmp = icmp slt i32 %i.0, %b
+  br i1 %cmp, label %for.body, label %for.end
 
-6:                                                ; preds = %4
-  %7 = call i32 @g_incr(i32 noundef %2)
-  br label %8
+for.body:                                         ; preds = %for.cond
+  %call = call i32 @g_incr(i32 noundef %c)
+  br label %for.inc
 
-8:                                                ; preds = %6
-  %9 = add nsw i32 %.0, 1
-  br label %4, !llvm.loop !6
+for.inc:                                          ; preds = %for.body
+  %inc = add nsw i32 %i.0, 1
+  br label %for.cond, !llvm.loop !6
 
-10:                                               ; preds = %4
-  %11 = load i32, ptr @g, align 4
-  %12 = add nsw i32 0, %11
-  ret i32 %12
+for.end:                                          ; preds = %for.cond
+  %0 = load i32, ptr @g, align 4
+  %add = add nsw i32 0, %0
+  ret i32 %add
 }
 
 attributes #0 = { noinline nounwind sspstrong uwtable "frame-pointer"="all" "min-legal-vector-width"="0" "no-trapping-math"="true" "stack-protector-buffer-size"="8" "target-cpu"="x86-64" "target-features"="+cmov,+cx8,+fxsr,+mmx,+sse,+sse2,+x87" "tune-cpu"="generic" }
