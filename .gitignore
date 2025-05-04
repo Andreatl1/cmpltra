@@ -9,7 +9,6 @@
 *.ninja
 *.optimized.*
 *.bc
-*/script.sh
 
 # File oggetto e binari
 *.o
