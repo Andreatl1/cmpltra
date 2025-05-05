@@ -10,7 +10,7 @@
 using namespace llvm;
 
 namespace assignment3 {
-
+// Funzione ricorsiva che stampa l'albero di dominanza
 void printDomTree1(const DomTreeNode *N, raw_ostream &OS, unsigned Indent) {
     OS.indent(Indent * 2);
     if (N->getBlock()) {
@@ -23,6 +23,7 @@ void printDomTree1(const DomTreeNode *N, raw_ostream &OS, unsigned Indent) {
     }
 }
 
+// Verifica se tutti gli operandi di un'istruzione sono loop-invariant
 static bool checkOperands(Instruction &I, Loop *L, DominatorTree &DT, SmallPtrSet<Instruction*, 8> &Visited) {
     SmallVector<Instruction*, 8> Worklist;
     Worklist.push_back(&I);
@@ -30,7 +31,8 @@ static bool checkOperands(Instruction &I, Loop *L, DominatorTree &DT, SmallPtrSe
 
     while (!Worklist.empty()) {
         Instruction *Current = Worklist.pop_back_val();
-
+        
+        // Se è un PHI node dentro il loop, non può essere spostato
         if (PHINode *PN = dyn_cast<PHINode>(Current)) {
             if (L->contains(PN->getParent())) return false;
         }
@@ -47,6 +49,7 @@ static bool checkOperands(Instruction &I, Loop *L, DominatorTree &DT, SmallPtrSe
                     }
                 }
             } else if (!isa<Constant>(Op) && !isa<Argument>(Op)) {
+                // Solo costanti e argomenti sono considerati sicuri
                 return false;
             }
         }
@@ -54,6 +57,7 @@ static bool checkOperands(Instruction &I, Loop *L, DominatorTree &DT, SmallPtrSe
     return true;
 }
 
+// Cerca di spostare le istruzioni loop-invariant nel preheader
 static bool hoistInvariants(Loop *L, DominatorTree &DT, TargetLibraryInfo *TLI) {
     BasicBlock *Preheader = L->getLoopPreheader();
     if (!Preheader) return false;
@@ -64,6 +68,7 @@ static bool hoistInvariants(Loop *L, DominatorTree &DT, TargetLibraryInfo *TLI) 
 
     for (BasicBlock *BB : L->blocks()) {
         for (Instruction &I : *BB) {
+            // Escludiamo PHI, terminator, accessi alla memoria o istruzioni pericolose
             if (isa<PHINode>(I) || I.isTerminator() || I.mayReadOrWriteMemory() || !isSafeToSpeculativelyExecute(&I, nullptr, nullptr, &DT,true)) continue;
 
 
